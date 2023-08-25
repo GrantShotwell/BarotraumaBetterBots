@@ -1,74 +1,74 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <Platforms>x64</Platforms>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Platforms>x64</Platforms>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\Refs\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="Barotrauma">
-      <HintPath>..\Refs\Client\Barotrauma.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>..\Refs\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Framework.Windows.NetStandard">
-      <HintPath>..\Refs\MonoGame.Framework.Windows.NetStandard.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoMod.Common">
-      <HintPath>..\Refs\MonoMod.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="MoonSharp.Interpreter">
-      <HintPath>..\Refs\MoonSharp.Interpreter.dll</HintPath>
-    </Reference>
-    <Reference Include="NetScriptAssembly">
-      <HintPath>..\Refs\Client\NetScriptAssembly.dll</HintPath>
-    </Reference>
-    <Reference Include="XNATypes">
-      <HintPath>..\Refs\XNATypes.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="0Harmony">
+			<HintPath>..\Refs\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="Barotrauma">
+			<HintPath>..\Refs\Client\Barotrauma.dll</HintPath>
+		</Reference>
+		<Reference Include="Mono.Cecil">
+			<HintPath>..\Refs\Mono.Cecil.dll</HintPath>
+		</Reference>
+		<Reference Include="MonoGame.Framework.Windows.NetStandard">
+			<HintPath>..\Refs\MonoGame.Framework.Windows.NetStandard.dll</HintPath>
+		</Reference>
+		<Reference Include="MonoMod.Common">
+			<HintPath>..\Refs\MonoMod.Common.dll</HintPath>
+		</Reference>
+		<Reference Include="MoonSharp.Interpreter">
+			<HintPath>..\Refs\MoonSharp.Interpreter.dll</HintPath>
+		</Reference>
+		<Reference Include="NetScriptAssembly">
+			<HintPath>..\Refs\Client\NetScriptAssembly.dll</HintPath>
+		</Reference>
+		<Reference Include="XNATypes">
+			<HintPath>..\Refs\XNATypes.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 
-  <Import Project="..\Shared\BetterBots.Shared.projitems" Label="Shared" />
+	<Import Project="..\Shared\BetterBots.Shared.projitems" Label="Shared" />
 
-  <PropertyGroup>
-    <!-- IMPORTANT: Should point to <Barotrauma_Install>\LocalMods\<MyModName>\ -->
-    <!-- IMPORTANT: ModDeplyDir Path must end with '\' -->
-    <ModDeployDir>D:\SteamLibrary\steamapps\common\Barotrauma\LocalMods\BetterBots\</ModDeployDir>
-    <!-- RunMode = 'Standard' | 'Forced' -->
-    <RunMode>Standard</RunMode>
-    <AssemblyName>$(SolutionName).plugin</AssemblyName>
-    <RootNamespace>$(SolutionName.Replace(" ", "_")).Client</RootNamespace>
-    <PlatformTarget>x64</PlatformTarget>
-    <GenerateDocumentationFile>False</GenerateDocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<!-- IMPORTANT: Should point to <Barotrauma_Install>\LocalMods\<MyModName>\ -->
+		<!-- IMPORTANT: ModDeplyDir Path must end with '\' -->
+		<ModDeployDir>D:\SteamLibrary\steamapps\common\Barotrauma\LocalMods\BetterBots\</ModDeployDir>
+		<!-- RunMode = 'Standard' | 'Forced' -->
+		<RunMode>Standard</RunMode>
+		<AssemblyName>$(SolutionName).plugin</AssemblyName>
+		<RootNamespace>$(SolutionName.Replace(" ", "_")).Client</RootNamespace>
+		<PlatformTarget>x64</PlatformTarget>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <DefineConstants>$(DefineConstants)TRACE;CLIENT</DefineConstants>
-    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<DefineConstants>$(DefineConstants)TRACE;CLIENT</DefineConstants>
+		<TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <DefineConstants>$(DefineConstants)TRACE;CLIENT</DefineConstants>
-    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<DefineConstants>$(DefineConstants)TRACE;CLIENT</DefineConstants>
+		<TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+	</PropertyGroup>
 
-  <Target Name="CopyFiles" AfterTargets="Build">
-    <ItemGroup>
-      <FileList Include="$(SolutionDir)filelist.xml" />
-      <RunConfig Include="$(SolutionDir)RunConfig.xml" />
-      <Assemblies Include="$(TargetDir)$(TargetName).dll" />
-      <DepsFiles Include="$(TargetDir)$(TargetName).deps.json" />
-    </ItemGroup>
-    <Copy SourceFiles="@(Assemblies)" DestinationFiles="$(ModDeployDir)bin\Client\$(RunMode)\$(TargetName).dll" />
-    <Copy SourceFiles="@(DepsFiles)" DestinationFiles="$(ModDeployDir)bin\Client\$(RunMode)\$(TargetName).deps.json" />
-    <Copy SourceFiles="@(FileList)" DestinationFiles="$(ModDeployDir)filelist.xml" />
-    <Copy SourceFiles="@(RunConfig)" DestinationFiles="$(ModDeployDir)CSharp\RunConfig.xml" />
-  </Target>
+	<Target Name="CopyFiles" AfterTargets="Build">
+		<ItemGroup>
+			<FileList Include="$(SolutionDir)filelist.xml" />
+			<RunConfig Include="$(SolutionDir)RunConfig.xml" />
+			<Assemblies Include="$(TargetDir)$(TargetName).dll" />
+			<DepsFiles Include="$(TargetDir)$(TargetName).deps.json" />
+		</ItemGroup>
+		<Copy SourceFiles="@(Assemblies)" DestinationFiles="$(ModDeployDir)bin\Client\$(RunMode)\$(TargetName).dll" />
+		<Copy SourceFiles="@(DepsFiles)" DestinationFiles="$(ModDeployDir)bin\Client\$(RunMode)\$(TargetName).deps.json" />
+		<Copy SourceFiles="@(FileList)" DestinationFiles="$(ModDeployDir)filelist.xml" />
+		<Copy SourceFiles="@(RunConfig)" DestinationFiles="$(ModDeployDir)CSharp\RunConfig.xml" />
+	</Target>
 
 </Project>

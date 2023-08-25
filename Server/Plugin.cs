@@ -1,4 +1,7 @@
 ﻿using ModdingToolkit;
+using System.Runtime.CompilerServices;
+
+[assembly: IgnoresAccessChecksTo("Barotrauma")]
 
 namespace BetterBots;
 

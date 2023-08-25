@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Order name="Speak" identifier="speak"
+	assignmentpriority="90"
+	category="movement"
+	mustmanuallyassign="true"
+	coloredwhencontrollinggiver="true"
+	displaygiverintooltip="true">
+	<Sprite name="Command_Follow" texture="Content/UI/CommandUIAtlas.png" sourcerect="128,256,128,128"/>
+</Order>
