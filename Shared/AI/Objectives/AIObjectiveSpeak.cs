@@ -9,10 +9,10 @@ namespace BetterBots.Shared.AI.Objectives;
 
 class AIObjectiveSpeak : AIObjective {
 
-	// Settings this property I think is redundant.
+	// Setting this property I think is redundant.
+	// The AIObjectiveManager sets the identifier in CreateObjective(...)
 	public override Identifier Identifier { get; set; } = "speak".ToIdentifier();
 
-	// These properties are required so the objective isn't skipped immediately.
 	public override bool AllowInAnySub => false;
 
 	public AIObjectiveSpeak(
@@ -32,6 +32,7 @@ class AIObjectiveSpeak : AIObjective {
 #if CLIENT
 		this.character.Speak("I'm speaking!", Barotrauma.Networking.ChatMessageType.Radio);
 #endif
+		IsCompleted = true;
 	}
 
 	public override float GetPriority() {

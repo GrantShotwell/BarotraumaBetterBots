@@ -2,7 +2,9 @@
 using System.Collections.Immutable;
 using System.Runtime.CompilerServices;
 
+// 'Barotrauma' makes client-side work.
 [assembly: IgnoresAccessChecksTo("Barotrauma")]
+// 'DedicatedServer' makes server-side work.
 [assembly: IgnoresAccessChecksTo("DedicatedServer")]
 
 namespace BetterBots;
