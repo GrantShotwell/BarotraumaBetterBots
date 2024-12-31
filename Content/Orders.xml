@@ -1,9 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Order name="Speak" identifier="speak"
-	assignmentpriority="90"
-	category="movement"
-	mustmanuallyassign="true"
-	coloredwhencontrollinggiver="true"
-	displaygiverintooltip="true">
-	<Sprite name="Command_Follow" texture="Content/UI/CommandUIAtlas.png" sourcerect="128,256,128,128"/>
-</Order>
+
+<Orders>
+	<Order
+		name="Speak"
+		identifier="speak"
+		assignmentpriority="90"
+		category="movement"
+		mustmanuallyassign="true"
+		coloredwhencontrollinggiver="true"
+		displaygiverintooltip="true"
+	>
+		<Sprite
+			name="Command_Follow"
+			texture="Content/UI/CommandUIAtlas.png"
+			sourcerect="128,256,128,128"
+		/>
+	</Order>
+	<Order
+		name="Fabricate Medical Supplies"
+		identifier="fabricatemedical"
+		assignmentpiority="90"
+		category="maintenance"
+		mustsettarget="true"
+		options="medical,subammunition"
+		optionnames="Medical Supplies, Submarine Ammunition"
+	>
+		<Sprite
+			name="Command_LoadItems_OxygenTanks"
+			texture="Content/UI/CommandUIBackground.png"
+			sheetindex="7,7"
+			sheetelementsize="128,128"
+		/>
+	</Order>
+	<Order
+		name="Fabricate Submarine Ammunition"
+		identifier="fabricatesubammunition"
+		assignmentpiority="90"
+		category="maintenance"
+		mustsettarget="true"
+	>
+		<Sprite
+			name="Command_LoadItems_TurretAmmo"
+			texture="Content/UI/CommandUIBackground.png"
+			sheetindex="5,7"
+			sheetelementsize="128,128"
+		/>
+	</Order>
+</Orders>

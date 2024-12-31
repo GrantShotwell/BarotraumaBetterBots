@@ -2,10 +2,12 @@
 using HarmonyLib;
 using ModdingToolkit;
 
-namespace BetterBots.Shared.AI.Objectives;
+namespace BetterBots.Shared.Characters.AI.Objectives;
 
+/// <summary>
+/// Patch for <see cref="AIObjectiveManager.CreateObjective(Order, float)"/>.
+/// </summary>
 [HarmonyPatch(typeof(AIObjectiveManager), nameof(AIObjectiveManager.CreateObjective))]
-
 public class AIObjectiveManager_CreateObjective {
 
 	static void Postfix(AIObjectiveManager __instance, ref AIObjective? __result, Order order, float priorityModifier = 1f) {
@@ -15,6 +17,10 @@ public class AIObjectiveManager_CreateObjective {
 		switch (order.Identifier.Value.ToLowerInvariant()) {
 			case "speak": {
 				aiObjective = new AIObjectiveSpeak(__instance.character, __instance, priorityModifier);
+				break;
+			}
+			case "fabricatemedical": {
+				aiObjective = new AIObjectiveFabricateItems(__instance.character, new List(), __instance, priorityModifier);
 				break;
 			}
 		}

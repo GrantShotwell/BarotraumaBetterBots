@@ -5,9 +5,9 @@ using ModdingToolkit;
 using Microsoft.Xna.Framework;
 #endif
 
-namespace BetterBots.Shared.AI.Objectives;
+namespace BetterBots.Shared.Characters.AI.Objectives;
 
-class AIObjectiveSpeak : AIObjective {
+public sealed class AIObjectiveSpeak : AIObjective {
 
 	// Setting this property I think is redundant.
 	// The AIObjectiveManager sets the identifier in CreateObjective(...)
